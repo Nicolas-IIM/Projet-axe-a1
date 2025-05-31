@@ -94,6 +94,29 @@ $currentUserId = $_SESSION["userid"];
             ?>
         </section>
 
+        <section>
+            <h2 class="profile" >Mes cartes liké</h2>
+
+            <?php
+            $query = "SELECT tracks.title_track
+          FROM collection
+          INNER JOIN tracks ON collection.id_trc_spotify = tracks.id_trc_spotify
+          WHERE collection.iduser = $currentUserId AND collection.like = 1";
+
+            $result = $pdo->query($query);
+            $myCards = $result->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($myCards) {
+                foreach ($myCards as $card) {
+                    echo "<div class='card card-collection margin-10'>🎶 " . $card['title_track'] . "</div>";
+                }
+            } else {
+                echo "Pas encore de cartes dans votre collection";
+            }
+            ?>
+        </section>
+
+
 
 
 
