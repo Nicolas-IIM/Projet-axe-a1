@@ -24,17 +24,17 @@ $currentUserId = $_SESSION["userid"];
         <div class="sidebar-section">
             <h2>Musicard</h2>
             <ul>
-                <li class="sidebar-section-hover">🎵 Découverte</li>
-                <li>🔍 Recherche</li>
+                <li> <a href="../dashboard.php">🎵 Découverte</a></li>
+                <li> <a href="recherhce.php">🔍 Recherche</a> </li>
                 <li>🎙️ Podcast</li>
             </ul>
         </div>
         <div class="sidebar-section">
             <h2>Mon espace</h2>
             <ul>
-                <li>🎶 Mes musiques</li>
+                <li> <a href="profile.php">🎶 Mes musiques</a></li>
                 <li>🖼️ Mes cover</li>
-                <li>📦 Mes booster</li>
+                <li><a href="add-msc.php">🎶 📦 Mes booster</a></li>
             </ul>
         </div>
         <div class="sidebar-section">
@@ -46,7 +46,7 @@ $currentUserId = $_SESSION["userid"];
             </ul>
         </div>
         <div class="sidebar-section">
-            <h2>Mon compte</h2>
+            <h2 >Mon compte</h2>
             <ul>
                 <li>
                     <?php

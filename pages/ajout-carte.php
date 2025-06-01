@@ -14,7 +14,7 @@ $user_accunt_id = $_SESSION["userid"];
 if (isset($_POST['add'])) {
     $idTrcSpotify = $_POST['id_trc_spotify'];
 
-    // Vérifie si la carte n'est pas déjà ajoutée
+    // verifie si la carte n est pas deja ajoutee
     $check = $pdo->prepare("SELECT id_trc_spotify FROM collection WHERE id_trc_spotify = ? AND iduser = ?");
     $check->execute([$idTrcSpotify, $user_accunt_id]);
 

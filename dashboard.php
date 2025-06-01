@@ -17,17 +17,17 @@ session_start();
         <div class="sidebar-section">
             <h2>Musicard</h2>
             <ul>
-                <li class="sidebar-section-hover">🎵 Découverte</li>
-                <li>🔍 Recherche</li>
+                <li> <a href="">🎵 Découverte</a></li>
+                <li> <a href="/pages/recherhce.php">🔍 Recherche</a> </li>
                 <li>🎙️ Podcast</li>
             </ul>
         </div>
         <div class="sidebar-section">
             <h2>Mon espace</h2>
             <ul>
-                <li>🎶 Mes musiques</li>
+                <li> <a href="/pages/profile.php">🎶 Mes musiques</a></li>
                 <li>🖼️ Mes cover</li>
-                <li>📦 Mes booster</li>
+                <li><a href="/pages/add-msc.php">🎶 📦 Mes booster</a></li>
             </ul>
         </div>
         <div class="sidebar-section">
@@ -39,7 +39,7 @@ session_start();
             </ul>
         </div>
         <div class="sidebar-section">
-            <h2>Mon compte</h2>
+            <h2 >Mon compte</h2>
             <ul>
                 <li>
                     <?php
@@ -53,6 +53,7 @@ session_start();
                 <li class="sans-mise-en-forme-liens"><a href="pages/includes/logout.inc.php">✨ Déconnexion</a></li>
                 <li class="sans-mise-en-forme-liens"><a href="pages/help/help.php">✨ Aide</a></li>
                 <li>✨ Mes likes</li>
+
             </ul>
         </div>
     </nav>

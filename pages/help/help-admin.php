@@ -93,10 +93,8 @@ if(isset($_POST['submit-edit'])) {
     }
 }
 
-/////
-///// SELECT
-/////
-$stmt = $pdo->query("SELECT * FROM ticket_support"); // PDO STATEMENT
+
+$stmt = $pdo->query("SELECT * FROM ticket_support");
 $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -204,7 +202,6 @@ session_start();
         <form method="POST">
             <p>Formulaire de modification</p>
 
-            <!-- Champ caché pour l'ID du ticket -->
             <input type="hidden" name="id_ticket" value="<?php echo isset($ticket_to_edit) ? $ticket_to_edit["id_ticket"] : "" ?>">
 
             <label for="titre_support-edit">Titre:</label>
@@ -242,14 +239,3 @@ session_start();
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

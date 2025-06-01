@@ -171,7 +171,7 @@ session_start();
 
     <main class="main-content">
         <form method="POST">
-            <p class="titre-help-creation">Formulaire de création</p>
+            <p class="titre-help-creation">Formulaire de création de ticket</p>
 
             <label for="titre_support">Titre:</label>
             <input type="text" name="titre_support" id="titre_support" class="input-help" placeholder="Titre">

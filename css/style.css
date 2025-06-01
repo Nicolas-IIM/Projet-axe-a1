@@ -244,3 +244,6 @@ body {
 .margin-10{
     margin-top: 20px;
 }
+a {
+    all: unset; /* marche pas */
+}

@@ -1,21 +1,26 @@
 <?php
 session_start();
-
 $pdo = new PDO('mysql:host=localhost;dbname=musicard;charset=utf8', 'root', 'root');
-
 $currentUserId = $_SESSION["userid"];
 
-if (isset($_GET['id_track'])) {
-    $id_track = $_GET['id_track'];
-    $pdo->exec("UPDATE collection SET `like` = 1 WHERE id_trc_spotify = '$id_track' AND iduser = $currentUserId");
-}
+if (isset($_GET['booster'])) {
+    $stmt = $pdo->query("SELECT id_trc_spotify FROM tracks ORDER BY RAND() LIMIT 5");
+    $randomTracks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$result = $pdo->query("SELECT tracks.title_track, collection.id_trc_spotify, collection.like 
-                       FROM collection 
-                       JOIN tracks ON collection.id_trc_spotify = tracks.id_trc_spotify 
-                       WHERE collection.iduser = $currentUserId");
-$tracks = $result->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($randomTracks as $track) {
+        $id_trc_spotify = $track['id_trc_spotify'];
+        $pdo->exec("INSERT IGNORE INTO collection (id_trc_spotify, iduser, `like`) 
+                    VALUES ('$id_trc_spotify', $currentUserId, 0)"); // erreur si pas de '' sur like
+    }
+
+    echo "✅ 5 morceaux sont ajoutés, merci de revenir demain !";
+}
 ?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -74,41 +79,32 @@ $tracks = $result->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <main class="main-content">
+
         <div class="profile">
-            <h2>Mon Profil</h2>
-            <p>Bienvenue sur votre profil, <?php echo isset($_SESSION["useruid"]) ? $_SESSION["useruid"] : "Invité"; ?>!</p>
-        </div>
-
-
+            <h1>Mes boosters</h1>
+            <p>Vous pouvez ajouter 5 morceaux aléatoires par jour.</p>
         <section>
-            <h1>Mes musique</h1>
-            <?php
-            echo "<table border='1'>";
-            echo "<tr><th>Titre</th><th>Like</th></tr>";
+            <form method="get">
+                <button type="submit" name="booster" value="1" class="button-connextion margin-10">Ajouter 5 morceaux aléatoires</button>
+            </form>
 
-            foreach ($tracks as $track) {
-                echo "<tr>";
-                echo "<td>" . $track['title_track'] . "</td>";
-                echo "<td>";
-                if ($track['like'] == 1) {
-                    echo "❤️ Déjà liké";
-                } else {
-                    echo "<a href='?id_track=" . $track['id_trc_spotify'] . "'>Liker</a>";
-                }
-                echo "</td>";
-                echo "</tr>";
-            }
-
-            echo "</table>";
-            ?>
         </section>
 
 
 
 
 
-        </body>
-        </html>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
 
 
 

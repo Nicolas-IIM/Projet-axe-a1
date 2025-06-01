@@ -19,17 +19,17 @@ session_start();
         <div class="sidebar-section">
             <h2>Musicard</h2>
             <ul>
-                <li class="sidebar-section-hover">🎵 Découverte</li>
-                <li>🔍 Recherche</li>
+                <li> <a href="../dashboard.php">🎵 Découverte</a></li>
+                <li> <a href="recherhce.php">🔍 Recherche</a> </li>
                 <li>🎙️ Podcast</li>
             </ul>
         </div>
         <div class="sidebar-section">
             <h2>Mon espace</h2>
             <ul>
-                <li>🎶 Mes musiques</li>
+                <li> <a href="profile.php">🎶 Mes musiques</a></li>
                 <li>🖼️ Mes cover</li>
-                <li>📦 Mes booster</li>
+                <li><a href="add-msc.php">🎶 📦 Mes booster</a></li>
             </ul>
         </div>
         <div class="sidebar-section">
@@ -41,7 +41,7 @@ session_start();
             </ul>
         </div>
         <div class="sidebar-section">
-            <h2>Mon compte</h2>
+            <h2 >Mon compte</h2>
             <ul>
                 <li>
                     <?php
@@ -56,9 +56,9 @@ session_start();
                 <li class="sans-mise-en-forme-liens"><a href="pages/help/help.php">✨ Aide</a></li>
                 <li>✨ Mes likes</li>
 
-                <input id="searchInput" type="text" placeholder="Titre à chercher..." size="30">
-                <button id="recherche">Rechercher</button>
             </ul>
+            <input id="searchInput" type="text" placeholder="Titre à chercher..." size="30" class="input">
+            <button id="recherche" class="button-connextion">Rechercher</button>
         </div>
     </nav>
 
@@ -76,9 +76,6 @@ session_start();
 
 
         <div class="grid" id="results">
-
-
-
 
 
 
@@ -121,7 +118,7 @@ session_start();
                                     .then(res => res.json())
                                     .then(r => {
 
-                                        const statusEl = document.createElement("p");
+                                        const statusEl = document.createElement("p"); // bug
                                         statusEl.className = "status";
                                         statusEl.textContent = r.status === "ok" ? "✅ Dans la base de donnée" : "❌ Erreur";
                                         div.appendChild(statusEl);
@@ -130,31 +127,6 @@ session_start();
                         });
                 };
             </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
