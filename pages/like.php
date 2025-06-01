@@ -5,7 +5,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=musicard;charset=utf8', 'root', 'roo
 
 $currentUserId = $_SESSION["userid"];
 
-if (isset($_GET['id_track'])) {
+if (isset($_GET['id_track'])) { // si l'url contient un id_track
     $id_track = $_GET['id_track'];
     $pdo->exec("UPDATE collection SET `like` = 1 WHERE id_trc_spotify = '$id_track' AND iduser = $currentUserId");
 }
@@ -14,7 +14,7 @@ $result = $pdo->query("SELECT tracks.title_track, collection.id_trc_spotify, col
                        FROM collection 
                        JOIN tracks ON collection.id_trc_spotify = tracks.id_trc_spotify 
                        WHERE collection.iduser = $currentUserId");
-$tracks = $result->fetchAll(PDO::FETCH_ASSOC);
+$tracks = $result->fetchAll(PDO::FETCH_ASSOC); // pas le titre dans la bdd collenction
 ?>
 
 <!DOCTYPE html>

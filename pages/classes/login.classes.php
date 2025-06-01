@@ -6,7 +6,7 @@ class Login extends Dbh{
         $stmt = $this->connect()->prepare("SELECT usersPwd FROM users WHERE usersUid = ? OR usersEmail = ?");
 
 
-        if(!$stmt->execute(array($uid, $uid))){ // https://youtu.be/BaEm2Qv14oU?t=3546
+        if(!$stmt->execute(array($uid, $uid))){ // https://youtu.be/BaEm2Qv14oU?t=3546 requete pdo statement
             $stmt = null;
             header("location: ../login.php?error=stmtfailed"); // redirection avec les erreurs
             exit();
@@ -21,7 +21,7 @@ class Login extends Dbh{
 
 
 
-        $checkPdw = password_verify($pwd,$pwdHash[0]['usersPwd']); // https://youtu.be/BaEm2Qv14oU?t=3546
+        $checkPdw = password_verify($pwd,$pwdHash[0]['usersPwd']); // https://youtu.be/BaEm2Qv14oU?t=3546 il retoune un tableau, mais on veux que la 1er valeur donc 0
 
         if($checkPdw == false){
             $stmt = null;
@@ -33,7 +33,7 @@ class Login extends Dbh{
             $stmt = $this->connect()->prepare("SELECT * FROM users WHERE usersUid = ? OR usersEmail = ? AND usersPwd = ?"); // preparation de la requete
 
 
-            if (!$stmt->execute(array($uid, $uid, $pwdHash[0]['usersPwd']))) {
+            if (!$stmt->execute(array($uid, $uid, $pwdHash[0]['usersPwd']))) { // si erreur alors
 
                 $stmt = null;
                 header("location: ../login.php?error=stmtfailed");
@@ -47,7 +47,7 @@ class Login extends Dbh{
             $_SESSION["useruid"] = $user[0]["usersUid"];
         }
 
-        $stmt = null;
+        $stmt = null; // rien n'est retourné donc on ferme la requete
 
     }
 

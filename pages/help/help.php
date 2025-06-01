@@ -93,10 +93,8 @@ if(isset($_POST['submit-edit'])) { // si le formulaire de modification est soumi
     }
 }
 
-/////
-///// SELECT
-/////
-$stmt = $pdo->query("SELECT * FROM ticket_support"); // PDO STATEMENT
+
+$stmt = $pdo->query("SELECT * FROM ticket_support"); // pdo pour recuperer les tickets
 $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 

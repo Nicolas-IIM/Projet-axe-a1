@@ -1,6 +1,6 @@
 <?php
 
-class SignupContr extends signup
+class SignupContr extends signup // extends signup pour pouvoir utiliser les fonctions de signup pas dans ce fichier
 {
 
     private $uid;
@@ -8,7 +8,7 @@ class SignupContr extends signup
     private $pwdRepeat; // class privé
     private $email;
 
-    public function __construct($uid, $pwd, $pwdRepeat, $email)
+    public function __construct($uid, $pwd, $pwdRepeat, $email) // constructeur pour initialiser les variables
     {
         $this->uid = $uid;
         $this->pwd = $pwd;

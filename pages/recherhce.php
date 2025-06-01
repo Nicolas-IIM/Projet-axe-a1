@@ -81,26 +81,26 @@ session_start();
 
 
             <script>
-                document.getElementById("recherche").onclick = () => {
+                document.getElementById("recherche").onclick = () => { // lance le script au clic
                     const q = document.getElementById("searchInput").value.trim();
-                    if (!q) return alert("Entrez un mot-clé !");
-                    fetch("search.php?q=" + encodeURIComponent(q))
+                    if (!q) return alert("Entrez une tracks !"); // erreur si le champ est vide
+                    fetch("search.php?q=" + encodeURIComponent(q)) // requete asynchrone vers search.php
                         .then(r => r.json())
                         .then(data => {
-                            const container = document.getElementById("results");
-                            container.innerHTML = "";
+                            const container = document.getElementById("results"); // récupère l'élément avec l'id "results"
+                            container.innerHTML = ""; // vide le contenu de l'élément
 
-                            if (!data.tracks || !data.tracks.items.length) {
+                            if (!data.tracks || !data.tracks.items.length) { // vérifie si des résultats existent
                                 container.textContent = "Aucun résultat.";
                                 return;
                             }
 
-                            data.tracks.items.forEach(track => {
+                            data.tracks.items.forEach(track => { // pour chaque track dans les résultat
                                 const div = document.createElement("div");
                                 div.className = "card";
 
                                 const img = track.album.images[0]?.url || '';
-                                const artists = track.artists.map(artist => artist.name).join(', ');
+                                const artists = track.artists.map(artist => artist.name).join(', '); // joint avec une ,
 
                                 div.innerHTML = `
                 <div class="placeholder-img" style="background-image: url('${img}'); background-size: cover; background-position: center;"></div>
@@ -108,15 +108,15 @@ session_start();
                 <p>${artists}</p>
             `;
 
-                                container.appendChild(div);
+                                container.appendChild(div); // ajoute la div créée dans le container
 
-                                fetch("add.php", {
+                                fetch("add.php", { // requete pour ajouter la track
                                     method: "POST",
                                     headers: { "Content-Type": "application/json" },
-                                    body: JSON.stringify(track)
+                                    body: JSON.stringify(track) // envoie les données de la track en JSON
                                 })
-                                    .then(res => res.json())
-                                    .then(r => {
+                                    .then(res => res.json()) // récupère la réponse de l'ajout
+                                    .then(r => { // traite la réponse
 
                                         const statusEl = document.createElement("p"); // bug
                                         statusEl.className = "status";

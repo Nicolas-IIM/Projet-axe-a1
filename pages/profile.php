@@ -79,7 +79,7 @@ $currentUserId = $_SESSION["userid"];
             $query = "SELECT tracks.title_track
           FROM collection
           INNER JOIN tracks ON collection.id_trc_spotify = tracks.id_trc_spotify
-          WHERE collection.iduser = $currentUserId";
+          WHERE collection.iduser = $currentUserId"; // pas le titre dans la bdd collenction
 
             $result = $pdo->query($query);
             $myCards = $result->fetchAll(PDO::FETCH_ASSOC);

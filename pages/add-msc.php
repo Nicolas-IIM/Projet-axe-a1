@@ -4,7 +4,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=musicard;charset=utf8', 'root', 'roo
 $currentUserId = $_SESSION["userid"];
 
 if (isset($_GET['booster'])) {
-    $stmt = $pdo->query("SELECT id_trc_spotify FROM tracks ORDER BY RAND() LIMIT 5");
+    $stmt = $pdo->query("SELECT id_trc_spotify FROM tracks ORDER BY RAND() LIMIT 5"); // ajoute 5 morceau au hasard avec rand
     $randomTracks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($randomTracks as $track) {
@@ -26,7 +26,7 @@ if (isset($_GET['booster'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Like</title>
+    <title>Booster</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
